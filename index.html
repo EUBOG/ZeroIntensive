@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вайб-кодинг с Claude Code — курс для тех, кто никогда не писал код</title>
+<meta name="description" content="Курс по вайб-кодингу: создавайте сайты и простые сервисы по описанию, без единой строчки кода. Для новичков, дизайнеров и маркетологов. 6 модулей, 12 проектов, публикация в интернете.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Вайб-кодинг с Claude Code — сайты и сервисы по описанию">
+<meta property="og:description" content="6 модулей и 12 проектов. От первого сайта за 30 минут до опубликованного сервиса.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%230A0A12'/><path d='M9 9h14L12 22h11' fill='none' stroke='%2306B6D4' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<!-- ══════════ HEADER ══════════ -->
+<header class="hdr" id="hdr">
+  <div class="wrap hdr__row">
+    <a href="#top" class="brand" data-magnet>
+      <span class="brand__glyph" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14L8 19h11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="brand__name">Вайб<span class="grad-text">Код</span></span>
+    </a>
+
+    <nav class="menu" id="menu" aria-label="Основная навигация">
+      <a href="#how">Как это работает</a>
+      <a href="#skills">Навыки</a>
+      <a href="#program">Программа</a>
+      <a href="#projects">Проекты</a>
+      <a href="#pricing">Тарифы</a>
+      <a href="#faq">Вопросы</a>
+      <a href="#lead" class="btn btn--glow btn--sm menu__cta">Записаться</a>
+    </nav>
+
+    <div class="hdr__side">
+      <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu">
+        <i></i><i></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <canvas class="matrix" id="matrix" aria-hidden="true"></canvas>
+  <div class="orbs" aria-hidden="true">
+    <span class="orb orb--1"></span>
+    <span class="orb orb--2"></span>
+    <span class="orb orb--3"></span>
+    <span class="orb orb--4"></span>
+  </div>
+
+  <div class="wrap hero__row">
+    <div class="hero__text">
+      <span class="pill reveal">
+        <span class="pill__dot"></span>
+        Набор на поток · старт 20 октября
+      </span>
+
+      <h1 class="hero__title reveal" style="--d:.06s">
+        Сайты и сервисы<br>
+        <span class="grad-text" data-scramble>собираются по описанию</span>
+      </h1>
+
+      <p class="hero__lead reveal" style="--d:.12s">
+        Вайб-кодинг — это новый способ делать цифровые продукты. Вы описываете идею
+        обычными словами, Claude Code пишет за вас код, вы смотрите результат
+        и просите внести правки. Знать программирование не нужно.
+      </p>
+
+      <div class="hero__cta reveal" style="--d:.18s">
+        <a href="#lead" class="btn btn--glow btn--lg" data-magnet>
+          Записаться на курс
+          <svg class="btn__arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#program" class="btn btn--ghost btn--lg">Смотреть программу</a>
+      </div>
+
+      <dl class="stats reveal" style="--d:.24s">
+        <div class="stats__item"><dt><b data-count="6">0</b></dt><dd>недель</dd></div>
+        <div class="stats__item"><dt><b data-count="12">0</b></dt><dd>проектов внутри</dd></div>
+        <div class="stats__item"><dt><b data-count="0">0</b></dt><dd>строк кода для вас</dd></div>
+        <div class="stats__item"><dt><b data-count="90">0</b>%</dt><dd>выпускников публикуют работу</dd></div>
+      </dl>
+    </div>
+
+    <div class="hero__demo reveal" style="--d:.3s">
+      <div class="console" id="console" data-tilt>
+        <div class="console__bar">
+          <span class="console__dots"><i></i><i></i><i></i></span>
+          <span class="console__file" id="consoleFile">сайт-студии-йоги.html</span>
+          <span class="console__live" id="consoleLive">собирается</span>
+        </div>
+
+        <div class="console__body" id="consoleBody">
+          <div class="pl" data-step="0">
+            <span class="pl__tag">вы</span>
+            <span class="pl__text">Сделай лендинг для студии йоги. Мягкие цвета, спокойный стиль, расписание занятий и форма записи.</span>
+          </div>
+          <div class="pl pl--ai" data-step="1">
+            <span class="pl__tag">Claude Code</span>
+            <span class="pl__text">Понял задачу. План:</span>
+          </div>
+          <div class="pl pl--dim" data-step="2"><span class="pl__bullet">01</span>Создаю структуру страницы и стили</div>
+          <div class="pl pl--dim" data-step="3"><span class="pl__bullet">02</span>Собираю секцию расписания из ваших данных</div>
+          <div class="pl pl--dim" data-step="4"><span class="pl__bullet">03</span>Добавляю форму записи и проверку полей</div>
+          <div class="pl pl--dim" data-step="5"><span class="pl__bullet">04</span>Оптимизирую под телефон</div>
+          <div class="pl pl--ok" data-step="6">
+            <span class="pl__check">✓</span>
+            Готово. Открыть в браузере?
+            <span class="pl__meta">12 сек</span>
+          </div>
+          <div class="pl pl--cursor" data-step="7"><span class="caret"></span></div>
+        </div>
+
+        <div class="console__preview">
+          <div class="preview__chrome"><i></i><i></i><i></i><span>localhost:3000</span></div>
+          <div class="preview__screen">
+            <div class="preview__nav"></div>
+            <div class="preview__hero"></div>
+            <div class="preview__row"><i></i><i></i><i></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TICKER ══════════ -->
+<section class="ticker" aria-label="Что вы сможете сделать">
+  <div class="ticker__row" id="tickerRow">
+    <a href="#skills" class="tk"><b>Лендинг</b><span>по описанию за 30 минут</span></a>
+    <a href="#skills" class="tk"><b>Сайт-портфолио</b><span>5 страниц с галереей</span></a>
+    <a href="#skills" class="tk"><b>Квиз</b><span>с подсчётом баллов</span></a>
+    <a href="#skills" class="tk"><b>Калькулятор</b><span>с логикой и результатом</span></a>
+    <a href="#skills" class="tk"><b>Форма заявки</b><span>с отправкой на почту</span></a>
+    <a href="#skills" class="tk"><b>Интернет-магазин</b><span>каталог и корзина</span></a>
+    <a href="#skills" class="tk"><b>Телеграм-бот</b><span>отвечает на вопросы</span></a>
+    <a href="#skills" class="tk"><b>Презентация</b><span>в браузере за вечер</span></a>
+  </div>
+</section>
+
+<!-- ══════════ ПРОБЛЕМА / АУДИТОРИЯ ══════════ -->
+<section class="sec sec--audience" id="audience">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="kicker reveal">Кому подойдёт</span>
+      <h2 class="sec__title reveal" style="--d:.05s">
+        Вам не нужен диплом.<br>
+        Нужна идея и немного смелости
+      </h2>
+      <p class="sec__lead reveal" style="--d:.1s">
+        Курс рассчитан на тех, кто годами откладывал «когда-нибудь сделаю свой сайт».
+        Технической подготовки не требуется — всему учимся по ходу.
+      </p>
+    </div>
+
+    <div class="aud-grid">
+      <article class="aud reveal" data-tilt style="--d:.02s">
+        <span class="aud__icon">🎨</span>
+        <h3>Дизайнерам</h3>
+        <p>Вместо бесконечных правок «а сделай вот так» — вы получаете живой прототип, который можно потрогать и показать клиенту в тот же день.</p>
+        <span class="aud__tag">Figma → работающий прототип</span>
+      </article>
+      <article class="aud reveal" data-tilt style="--d:.08s">
+        <span class="aud__icon">📣</span>
+        <h3>Маркетологам</h3>
+        <p>Запускайте лендинги под кампании за вечер вместо недели согласований. Тестируйте гипотезы на живых страницах, а не на картинках.</p>
+        <span class="aud__tag">Кампания за 1 день</span>
+      </article>
+      <article class="aud reveal" data-tilt style="--d:.14s">
+        <span class="aud__icon">💼</span>
+        <h3>Фрилансерам</h3>
+        <p>Закрывайте заказы, которые раньше отдавали подрядчикам. Сайт, блог, магазин, бот — вы закрываете весь набор сам.</p>
+        <span class="aud__tag">Больше заказов на тех же руках</span>
+      </article>
+      <article class="aud reveal" data-tilt style="--d:.2s">
+        <span class="aud__icon">🌱</span>
+        <h3>Новичкам</h3>
+        <p>Начните с нуля и без страха. Разбираем каждый шаг: от установки до публикации. Никакой магии — всё, что происходит на экране, вы понимаете.</p>
+        <span class="aud__tag">Старт с абсолютного нуля</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ КАК РАБОТАЕТ ══════════ -->
+<section class="sec sec--how" id="how">
+  <div class="wrap">
+    <div class="sec__head sec__head--center">
+      <span class="kicker reveal">Вайб-кодинг</span>
+      <h2 class="sec__title reveal" style="--d:.05s">Всего три шага</h2>
+      <p class="sec__lead reveal" style="--d:.1s">
+        Звучит неправдоподобно, но именно так выглядит работа с ИИ-агентом.
+        Разница с обычным чатом — он не советует, а делает.
+      </p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal" style="--d:.02s">
+        <span class="step__num">01</span>
+        <h3>Описываете идею</h3>
+        <p>Словами, как объяснили бы другу. «Нужен сайт для студии: расписание, цены, запись». Можно голосом, можно текстом.</p>
+      </div>
+      <div class="step reveal" style="--d:.1s">
+        <span class="step__num">02</span>
+        <h3>Агент собирает</h3>
+        <p>Claude Code создаёт файлы, верстает страницу, подключает форму и сразу показывает результат в браузере.</p>
+      </div>
+      <div class="step reveal" style="--d:.18s">
+        <span class="step__num">03</span>
+        <h3>Вы смотрите и просите</h3>
+        <p>Не нравится цвет — просите поменять. Не так работает кнопка — объясняете словами. Итог публикуете в интернете.</p>
+      </div>
+    </div>
+
+    <div class="loop reveal" style="--d:.24s">
+      <span class="loop__arrow" aria-hidden="true">↻</span>
+      <span>Шаги 2 и 3 повторяются, пока проект не станет вашим</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ НАВЫКИ ══════════ -->
+<section class="sec" id="skills">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="kicker reveal">Чему научитесь</span>
+      <h2 class="sec__title reveal" style="--d:.05s">Навыки, которые<br>остаются с вами навсегда</h2>
+    </div>
+
+    <div class="sk-grid">
+      <article class="sk reveal" style="--d:.02s">
+        <span class="sk__ico">⌘</span>
+        <h3>Ставить задачи</h3>
+        <p>Главный навык: формулировать желание так, чтобы результат был правильным с первого раза, а не после двадцати попыток.</p>
+      </article>
+      <article class="sk reveal" style="--d:.06s">
+        <span class="sk__ico">◈</span>
+        <h3>Оценивать результат</h3>
+        <p>Видеть, что получилось хорошо, а что нужно поправить. Без этого навыка агент сделает красиво, но не то, что нужно.</p>
+      </article>
+      <article class="sk reveal" style="--d:.1s">
+        <span class="sk__ico">▦</span>
+        <h3>Собирать интерфейсы</h3>
+        <p>Цвета, шрифты, сетки, отступы и адаптив под телефон — вы освоите базу веб-дизайна без единого курса по вёрстке.</p>
+      </article>
+      <article class="sk reveal" style="--d:.14s">
+        <span class="sk__ico">⚙</span>
+        <h3>Делать сервисы</h3>
+        <p>Калькуляторы, квизы, генераторы, формы с отправкой, простые базы данных — интерактив, а не только статичные страницы.</p>
+      </article>
+      <article class="sk reveal" style="--d:.18s">
+        <span class="sk__ico">↗</span>
+        <h3>Публиковать</h3>
+        <p>Домен, хостинг, HTTPS, аналитика. Проект не остаётся в папке — он открыт по ссылке, которую можно отправить клиенту.</p>
+      </article>
+      <article class="sk reveal" style="--d:.22s">
+        <span class="sk__ico">✦</span>
+        <h3>Продолжать сами</h3>
+        <p>После курса у вас остаётся рабочая среда и понимание, что с ней делать. Дальше вы не зависите от преподавателя.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ПРОГРАММА ══════════ -->
+<section class="sec sec--prog" id="program">
+  <div class="wrap">
+    <div class="sec__head sec__head--row">
+      <div>
+        <span class="kicker reveal">Программа</span>
+        <h2 class="sec__title reveal" style="--d:.05s">6 недель,<br>12 проектов</h2>
+      </div>
+      <p class="sec__lead reveal" style="--d:.1s">
+        Каждая неделя заканчивается работающим проектом, который вы публикуете.
+        Не «посмотрите, как это можно», а «у вас уже готово и открыто по ссылке».
+      </p>
+    </div>
+
+    <div class="prog">
+      <details class="pm reveal" open>
+        <summary class="pm__head">
+          <span class="pm__week">Неделя 1</span>
+          <span class="pm__name">Первый сайт за 30 минут</span>
+          <span class="pm__out">Лендинг в интернете</span>
+          <span class="pm__icon" aria-hidden="true"></span>
+        </summary>
+        <div class="pm__body">
+          <p>Устанавливаем Claude Code, разбираемся с интерфейсом и делаем первый проект: лендинг по короткому описанию. К вечеру у вас есть работающая страница и понимание, как всё устроено.</p>
+          <div class="pm__tags"><span>Установка</span><span>Первый промпт</span><span>Публикация</span></div>
+        </div>
+      </details>
+
+      <details class="pm reveal">
+        <summary class="pm__head">
+          <span class="pm__week">Неделя 2</span>
+          <span class="pm__name">Промпты, которые работают</span>
+          <span class="pm__out">Сайт на 5 страниц</span>
+          <span class="pm__icon" aria-hidden="true"></span>
+        </summary>
+        <div class="pm__body">
+          <p>Учимся формулировать задачи: структура, детали, примеры «так и не так». Собираем многостраничный сайт с меню, галереей и внутренними ссылками.</p>
+          <div class="pm__tags"><span>Структура задачи</span><span>Итерации</span><span>Навигация</span></div>
+        </div>
+      </details>
+
+      <details class="pm reveal">
+        <summary class="pm__head">
+          <span class="pm__week">Неделя 3</span>
+          <span class="pm__name">Дизайн без дизайнера</span>
+          <span class="pm__out">Сайт под телефон</span>
+          <span class="pm__icon" aria-hidden="true"></span>
+        </summary>
+        <div class="pm__body">
+          <p>Цвета, типографика, отступы и сетка. Как выглядит «хорошо» и почему, и как объяснить это ИИ словами, а не канцеляритом. Адаптация под телефоны.</p>
+          <div class="pm__tags"><span>Цвет и типографика</span><span>Композиция</span><span>Мобильная версия</span></div>
+        </div>
+      </details>
+
+      <details class="pm reveal">
+        <summary class="pm__head">
+          <span class="pm__week">Неделя 4</span>
+          <span class="pm__name">Простые сервисы</span>
+          <span class="pm__out">Работающий калькулятор</span>
+          <span class="pm__icon" aria-hidden="true"></span>
+        </summary>
+        <div class="pm__body">
+          <p>Переходим от страниц к логике: калькулятор, квиз с подсчётом баллов, генератор изображений. Знакомство с тем, как заставить страницу считать и реагировать.</p>
+          <div class="pm__tags"><span>Логика страницы</span><span>Квиз</span><span>Калькулятор</span></div>
+        </div>
+      </details>
+
+      <details class="pm reveal">
+        <summary class="pm__head">
+          <span class="pm__week">Неделя 5</span>
+          <span class="pm__name">Формы, оплата и база</span>
+          <span class="pm__out">Заявки приходят на почту</span>
+          <span class="pm__icon" aria-hidden="true"></span>
+        </summary>
+        <div class="pm__body">
+          <p>Формы с проверкой полей, отправка на почту и в таблицу, сохранение заявок. Подключение простой базы данных и первый магазин с каталогом.</p>
+          <div class="pm__tags"><span>Формы</span><span>Хранение данных</span><span>Каталог</span></div>
+        </div>
+      </details>
+
+      <details class="pm reveal">
+        <summary class="pm__head">
+          <span class="pm__week">Неделя 6</span>
+          <span class="pm__name">Запуск и своя система</span>
+          <span class="pm__out">3 проекта в портфолио</span>
+          <span class="pm__icon" aria-hidden="true"></span>
+        </summary>
+        <div class="pm__body">
+          <p>Домен, аналитика, ускорение. Собираем финальный проект под вашу задачу, оформляем портфолио и записываем систему промптов, которой будете пользоваться дальше.</p>
+          <div class="pm__tags"><span>Домен</span><span>Аналитика</span><span>Портфолио</span></div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ПРОЕКТЫ ══════════ -->
+<section class="sec sec--proj" id="projects">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="kicker reveal">Что можно собрать</span>
+      <h2 class="sec__title reveal" style="--d:.05s">Проекты выпускников</h2>
+      <p class="sec__lead reveal" style="--d:.1s">Ниже — реальные работы с курса. Каждая сделана без единой строки кода, написанной вручную.</p>
+    </div>
+
+    <div class="pj-grid">
+      <article class="pj reveal" data-tilt style="--d:.02s">
+        <div class="pj__thumb pj__thumb--a"><span>Студия йоги</span></div>
+        <div class="pj__meta"><h3>Лендинг студии йоги</h3><p>Расписание, цены, форма записи</p></div>
+      </article>
+      <article class="pj reveal" data-tilt style="--d:.06s">
+        <div class="pj__thumb pj__thumb--b"><span>Портфолио</span></div>
+        <div class="pj__meta"><h3>Сайт фотографа</h3><p>6 страниц, галерея, отзывы</p></div>
+      </article>
+      <article class="pj reveal" data-tilt style="--d:.1s">
+        <div class="pj__thumb pj__thumb--c"><span>Квиз</span></div>
+        <div class="pj__meta"><h3>Квиз для маркетинга</h3><p>Баллы и сегментация аудитории</p></div>
+      </article>
+      <article class="pj reveal" data-tilt style="--d:.14s">
+        <div class="pj__thumb pj__thumb--d"><span>Калькулятор</span></div>
+        <div class="pj__meta"><h3>Калькулятор стоимости</h3><p>Параметры, логика, PDF-выгрузка</p></div>
+      </article>
+      <article class="pj reveal" data-tilt style="--d:.18s">
+        <div class="pj__thumb pj__thumb--e"><span>Магазин</span></div>
+        <div class="pj__meta"><h3>Магазин handmade</h3><p>Каталог, корзина, заявка</p></div>
+      </article>
+      <article class="pj reveal" data-tilt style="--d:.22s">
+        <div class="pj__thumb pj__thumb--f"><span>Бот</span></div>
+        <div class="pj__meta"><h3>Бот для записи</h3><p>Диалог с выбором времени</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ТАРИФЫ ══════════ -->
+<section class="sec sec--price" id="pricing">
+  <div class="wrap">
+    <div class="sec__head sec__head--center">
+      <span class="kicker reveal">Тарифы</span>
+      <h2 class="sec__title reveal" style="--d:.05s">Выберите, как учиться</h2>
+      <p class="sec__lead reveal" style="--d:.1s">Курс обновляется вместе с Claude Code. Доступ к записям остаётся навсегда.</p>
+    </div>
+
+    <div class="pr-grid">
+      <article class="pr reveal" style="--d:.02s">
+        <h3 class="pr__name">Самостоятельно</h3>
+        <p class="pr__about">Видеоуроки и материалы, проходите в своём темпе</p>
+        <div class="pr__price"><b>24 900 ₽</b><span>или 3 110 ₽ в месяц</span></div>
+        <ul class="pr__list">
+          <li>6 модулей, 48 уроков</li>
+          <li>12 проектов с пошаговыми разборами</li>
+          <li>Библиотека промптов</li>
+          <li>Доступ к записям навсегда</li>
+        </ul>
+        <a href="#lead" class="btn btn--ghost btn--block">Выбрать</a>
+      </article>
+
+      <article class="pr pr--top reveal" style="--d:.08s">
+        <span class="pr__badge">Выбирают 8 из 10</span>
+        <h3 class="pr__name">С наставником</h3>
+        <p class="pr__about">Живая обратная связь и разбор ваших проектов</p>
+        <div class="pr__price"><b>49 900 ₽</b><span>или 6 240 ₽ в месяц</span></div>
+        <ul class="pr__list">
+          <li>Всё из тарифа «Самостоятельно»</li>
+          <li>Проверка 12 домашних проектов</li>
+          <li>2 созвона в неделю с наставником</li>
+          <li>Разбор вашего проекта целиком</li>
+          <li>Сертификат и кейс в портфолио</li>
+        </ul>
+        <a href="#lead" class="btn btn--glow btn--block">Забрать место</a>
+      </article>
+
+      <article class="pr reveal" style="--d:.14s">
+        <h3 class="pr__name">Компании</h3>
+        <p class="pr__about">Для команд, которым нужны результаты, а не курс</p>
+        <div class="pr__price"><b>от 180 000 ₽</b><span>за команду до 10 человек</span></div>
+        <ul class="pr__list">
+          <li>Всё из тарифа «С наставником»</li>
+          <li>Занятия под ваши рабочие задачи</li>
+          <li>Внутренний чат команды</li>
+          <li>Отчёт по результатам</li>
+        </ul>
+        <a href="#lead" class="btn btn--ghost btn--block">Обсудить</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ПРЕПОДАВАТЕЛИ ══════════ -->
+<section class="sec sec--team" id="team">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="kicker reveal">Наставники</span>
+      <h2 class="sec__title reveal" style="--d:.05s">Те, кто сам делает</h2>
+    </div>
+
+    <div class="tm-grid">
+      <article class="tm reveal" style="--d:.02s">
+        <div class="tm__ava" style="--a:#A855F7;--b:#EC4899">КС</div>
+        <h3>Кирилл Сафонов</h3>
+        <p class="tm__role">Продуктовый дизайнер, ex-Яндекс</p>
+        <p class="tm__text">Ведёт модули по дизайну и интерфейсам. Объясняет, почему «красиво» — это конкретные решения, а не вкус.</p>
+      </article>
+      <article class="tm reveal" style="--d:.07s">
+        <div class="tm__ava" style="--a:#06B6D4;--b:#3B82F6">АИ</div>
+        <h3>Алина Ильина</h3>
+        <p class="tm__role">Маркетолог, 40+ запусков</p>
+        <p class="tm__text">Показывает, как запускать страницы под задачи бизнеса: от гипотезы до отчёта по заявкам.</p>
+      </article>
+      <article class="tm reveal" style="--d:.12s">
+        <div class="tm__ava" style="--a:#5EEAD4;--b:#A855F7">РТ</div>
+        <h3>Роман Тихонов</h3>
+        <p class="tm__role">Разработчик, автор туториалов</p>
+        <p class="tm__text">Разбирает техническую часть без жаргона: что происходит в браузере и почему проект работает.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ОТЗЫВЫ ══════════ -->
+<section class="sec" id="reviews">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="kicker reveal">Отзывы</span>
+      <h2 class="sec__title reveal" style="--d:.05s">Истории тех,<br>кто раньше не умел</h2>
+    </div>
+
+    <div class="rv-grid">
+      <blockquote class="rv reveal" style="--d:.02s">
+        <div class="rv__stars">★★★★★</div>
+        <p>Я маркетолог, и моя главная боль была «хочу быстро сделать страницу под кампанию». Здесь за вечер собрал лендинг, который сам же и запустил. Руками этого не сделать было бы никогда.</p>
+        <footer><b>Ольга В.</b><span>маркетолог</span></footer>
+      </blockquote>
+      <blockquote class="rv reveal" style="--d:.07s">
+        <div class="rv__stars">★★★★★</div>
+        <p>Боялась, что без технического бэкграунда будет невозможно. Ничего сложного не было, потому что ИИ делает техническую часть сам. Понимать логику — полезно, а быть программистом — нет.</p>
+        <footer><b>Марина К.</b><span>дизайнер</span></footer>
+      </blockquote>
+      <blockquote class="rv reveal" style="--d:.12s">
+        <div class="rv__stars">★★★★★</div>
+        <p>Взял на курс, чтобы поднять цены на фрилансе. Теперь отдаю клиентам не «дизайн», а готовую работающую страницу. Средний чек вырос почти вдвое за три месяца.</p>
+        <footer><b>Артём Д.</b><span>фрилансер</span></footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FAQ ══════════ -->
+<section class="sec sec--faq" id="faq">
+  <div class="wrap wrap--narrow">
+    <div class="sec__head sec__head--center">
+      <span class="kicker reveal">Вопросы</span>
+      <h2 class="sec__title reveal" style="--d:.05s">Что обычно спрашивают</h2>
+    </div>
+
+    <div class="faq">
+      <details class="faq__i reveal" open>
+        <summary>Нужен ли опыт в программировании?<span class="faq__x" aria-hidden="true"></span></summary>
+        <p>Нет. Курс начинается с установки и первого проекта. Технические понятия объясняются по ходу, а если что-то непонятно — разбираем в созвонах и в комментариях под уроками.</p>
+      </details>
+      <details class="faq__i reveal">
+        <summary>Сколько времени займёт?<span class="faq__x" aria-hidden="true"></span></summary>
+        <p>От 4 часов в неделю. Уроки короткие — по 12–18 минут. Практику удобнее делать сразу после урока, тогда проект продвигается быстрее всего.</p>
+      </details>
+      <details class="faq__i reveal">
+        <summary>Нужно ли что-то покупать?<span class="faq__x" aria-hidden="true"></span></summary>
+        <p>Нужен доступ к Claude Code — это подписка Anthropic. В первом уроке покажем, как оплатить из России и сколько это стоит. Всё остальное — бесплатные инструменты.</p>
+      </details>
+      <details class="faq__i reveal">
+        <summary>А если мой проект не получится?<span class="faq__x" aria-hidden="true"></span></summary>
+        <p>Вернём полную стоимость в течение 14 дней после старта потока, если формат не подошёл. Достаточно написать куратору, без объяснений.</p>
+      </details>
+      <details class="faq__i reveal">
+        <summary>Claude Code же постоянно обновляется?<span class="faq__x" aria-hidden="true"></span></summary>
+        <p>Да, и поэтому курс пересобирается под каждую важную версию. Купленным остаётся доступ ко всем текущим и будущим материалам.</p>
+      </details>
+      <details class="faq__i reveal">
+        <summary>Есть ли рассрочка?<span class="faq__x" aria-hidden="true"></span></summary>
+        <p>Да, на 8 месяцев без переплаты: 3 110 ₽ в месяц на самостоятельном тарифе и 6 240 ₽ на тарифе с наставником.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<section class="cta" id="lead">
+  <div class="orbs orbs--cta" aria-hidden="true">
+    <span class="orb orb--1"></span>
+    <span class="orb orb--3"></span>
+  </div>
+
+  <div class="wrap cta__row">
+    <div class="cta__text">
+      <span class="kicker reveal">Осталось 18 мест</span>
+      <h2 class="cta__title reveal" style="--d:.05s">
+        Ваш первый сайт<br>будет готов к выходным
+      </h2>
+      <p class="cta__lead reveal" style="--d:.1s">
+        Оставьте контакты — пришлём программу, покажем примеры работ и подберём
+        тариф под вашу задачу.
+      </p>
+      <ul class="cta__list reveal" style="--d:.15s">
+        <li>Бесплатный вводный урок</li>
+        <li>Скидка 20% до 12 октября</li>
+        <li>Рассрочка 0% на 8 месяцев</li>
+        <li>Проекты остаются у вас навсегда</li>
+      </ul>
+    </div>
+
+    <div class="card-form reveal" style="--d:.2s" data-tilt>
+      <form id="leadForm" novalidate>
+        <h3 class="card-form__title">Забронировать место</h3>
+
+        <div class="field">
+          <input type="text" id="fName" name="name" placeholder=" " autocomplete="name" required>
+          <label for="fName">Как вас зовут</label>
+        </div>
+        <div class="field">
+          <input type="email" id="fEmail" name="email" placeholder=" " autocomplete="email" required>
+          <label for="fEmail">Почта для связи</label>
+        </div>
+        <div class="field">
+          <select id="fRole" name="role" required>
+            <option value="" disabled selected></option>
+            <option value="novice">Новичок, кода не писал</option>
+            <option value="designer">Дизайнер</option>
+            <option value="marketer">Маркетолог</option>
+            <option value="freelance">Фрилансер</option>
+            <option value="other">Другое</option>
+          </select>
+          <label for="fRole" class="field__lbl-static">Кто вы</label>
+        </div>
+
+        <button type="submit" class="btn btn--glow btn--block btn--lg" data-magnet>
+          Забрать место
+          <svg class="btn__arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <p class="card-form__demo">
+          <b>Демо-форма.</b> Данные никуда не отправляются. Чтобы заявки приходили по-настоящему,
+          укажите адрес в <code>LEAD_ENDPOINT</code> в файле <code>main.js</code>.
+        </p>
+        <p class="card-form__ok" id="formOk" role="status" aria-live="polite" hidden></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="ftr">
+  <div class="wrap ftr__row">
+    <div class="ftr__brand">
+      <a href="#top" class="brand">
+        <span class="brand__glyph" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14L8 19h11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="brand__name">Вайб<span class="grad-text">Код</span></span>
+      </a>
+      <p>Школа вайб-кодинга. Учим делать цифровые продукты без программиста.</p>
+    </div>
+
+    <div class="ftr__cols">
+      <div class="ftr__col">
+        <h4>Обучение</h4>
+        <a href="#how">Как это работает</a>
+        <a href="#program">Программа</a>
+        <a href="#pricing">Тарифы</a>
+        <a href="#team">Наставники</a>
+      </div>
+      <div class="ftr__col">
+        <h4>Разделы</h4>
+        <a href="#skills">Навыки</a>
+        <a href="#projects">Проекты</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#faq">Вопросы</a>
+      </div>
+      <div class="ftr__col">
+        <h4>Связь</h4>
+        <a href="mailto:hi@vibe.school">hi@vibe.school</a>
+        <a href="#lead">Написать в Telegram</a>
+        <a href="#lead">Корпоративное обучение</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap ftr__bottom">
+    <span>© 2026 ВайбКод. Все права защищены.</span>
+    <div class="ftr__legal">
+      <a href="#top">Политика конфиденциальности</a>
+      <a href="#top">Договор</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
